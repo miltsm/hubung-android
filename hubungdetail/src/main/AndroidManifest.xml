@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    android:targetSandboxVersion="1">
+
+    <dist:module
+        dist:instant="true"
+        dist:title="@string/title_hubungdetail">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+        <dist:fusing dist:include="false" />
+    </dist:module>
+
+    <application>
+        <activity android:name=".DetailActivity"
+            android:exported="true"
+            android:parentActivityName="my.mildotdev.hubung.MainActivity">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="hubung" />
+
+                <!--                local endpoint for simulator-->
+                <data android:host="10.0.0.2" />
+                <!--                local endpoint for actual device-->
+                <data android:host="127.0.0.1" />
+                <!--                direct app link-->
+                <data android:host="my.mildotdev.hubungdetail"/>
+                <data android:pathPrefix="/detail" />
+                <data android:pathPattern="/{id}" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
